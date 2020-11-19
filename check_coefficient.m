@@ -3,8 +3,8 @@ close all
 clc
 
 % check coefficients
-alpha = deg2rad(linspace(-5,15));    % [rad]
-delta = deg2rad(linspace(-10,10));   % [rad]
+alpha = deg2rad(linspace(-10,20));    % [rad]
+delta = deg2rad(linspace(-20,20));   % [rad]
 % CL
 CL_alpha = CLpoly(alpha,0);
 CL_delta = CLpoly(0,delta);
@@ -31,4 +31,16 @@ plot(rad2deg(delta),CD_delta);
 plot(rad2deg(delta),Cm_delta);
 xlabel('\delta[deg]');
 ylabel('CL(\delta),CD(\delta),Cm(\delta)');
+legend('CL','CD','Cm');
+
+% Cm=0になるところで釣り合うはず
+delta = deg2rad(10);
+CL = CLpoly(alpha,delta);
+CD = CDpoly(alpha,delta);
+Cm = Cmpoly(alpha,delta);
+figure;
+plot(rad2deg(alpha),CL); hold on
+plot(rad2deg(alpha),CD);
+plot(rad2deg(alpha),Cm);
+grid on
 legend('CL','CD','Cm');
